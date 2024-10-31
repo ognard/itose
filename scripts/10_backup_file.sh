@@ -6,9 +6,9 @@ YELLOW='\033[0;33m'
 WHITE='\033[0;37m'
 NC='\033[0m'
 
+# Getting file. Empty name validation. Validation for existing file.
 echo -e "${WHITE}\n-------------------------------------------------------------------------------\n${NC}"
 printf "${WHITE}  Insert file name: ${NC}"
-
 while true; do
     read -r file_name
     if [[ -z $file_name ]]; then
@@ -20,6 +20,7 @@ while true; do
     fi
 done
 
+# Getting directory. Empty name validation.
 printf "${WHITE}  Insert backup directory: ${NC}"
 while [[ -z $dir_name ]]; do
     read -r dir_name
@@ -29,12 +30,14 @@ while [[ -z $dir_name ]]; do
 done
 
 
+# Creating directory if provided directory doesn't exist already.
 if [[ ! -d $dir_name ]]; then
     echo -e "\n  ${RED}[!]${NC} ${YELLOW}Backup directory doesn't exist! Creating '$dir_name' directory.${NC}"
     mkdir -p $dir_name
-
-    safe_dir_name="${dir_name// /_}"
-    cp "$file_name" "$safe_dir_name/$(basename "$file_name").$(date +%Y%m%d_%H%M%S).bak"
-
-    echo -e "\n  ${GREEN}\u2713 Process completed. Backup path: ${NC} ${safe_dir_name}/${file_name}_$(date +%Y%m%d_%H%M%S).tar.gz \n"
 fi
+
+# Copying the file and providing success message.
+safe_dir_name="${dir_name// /_}"
+cp "$file_name" "$safe_dir_name/$(basename "$file_name").$(date +%Y%m%d_%H%M%S).bak"
+echo -e "\n  ${GREEN}\u2713 Process completed. Backup path: ${NC} ${safe_dir_name}/${file_name}_$(date +%Y%m%d_%H%M%S).tar.gz \n"
+

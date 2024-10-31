@@ -6,10 +6,12 @@ YELLOW='\033[0;33m'
 WHITE='\033[0;37m'
 NC='\033[0m'
 
+# Initial prompt.
 echo -e "${WHITE}\n-------------------------------------------------------------------------------\n${NC}"
 printf "${GREEN}  The Shady Figure${NC}: [whispering] ${WHITE}Psst... want some cookies? [Y/n] ${NC}"
 read loop_choice
 
+# Asking for range. Looping through the provided range. Output of all items in the range.
 if [[ $loop_choice =~ ^[Yy]$ ]]; then
     while true; do
         printf "${GREEN}  \u2192${NC}:${WHITE} How many? "

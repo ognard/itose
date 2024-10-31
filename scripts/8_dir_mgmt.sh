@@ -6,6 +6,7 @@ YELLOW='\033[0;33m'
 WHITE='\033[0;37m'
 NC='\033[0m'
 
+# Adding directory name. Empty name validation.
 echo -e "${WHITE}\n-------------------------------------------------------------------------------\n${NC}"
 printf "${WHITE}  Insert directory name: ${NC}"
 while [[ -z $dir_name ]]; do
@@ -15,11 +16,14 @@ while [[ -z $dir_name ]]; do
     fi
 done
 
+# Directory creation.
 mkdir -p $dir_name
 
+# Listing directory prompt
 printf "${WHITE}  Do you want to list ${dir_name} contents? [Y/n] ${NC}"
 read list_choice
 
+# Listing and removing directory and its contents (based on the user's choice).
 if [[ $list_choice =~ ^[Yy]$ ]]; then
     ls -al $dir_name | sed 's/^/  /'
 

@@ -6,6 +6,7 @@ YELLOW='\033[0;33m'
 WHITE='\033[0;37m'
 NC='\033[0m'
 
+# Providing value A. Empty value validation.
 echo -e "${WHITE}\n-------------------------------------------------------------------------------\n${NC}"
 printf "${WHITE}  Insert value A: ${NC}"
 while [[ -z $value_a ]]; do
@@ -15,6 +16,7 @@ while [[ -z $value_a ]]; do
     fi
 done
 
+# Providing value B. Empty value validation.
 printf "${WHITE}  Insert value B: ${NC}"
 while [[ -z $value_b ]]; do
     read -r value_b
@@ -22,6 +24,8 @@ while [[ -z $value_b ]]; do
         printf "${RED}  x${NC} ${YELLOW}Value B must be provided.${NC} Insert value: "
     fi
 done
+
+# Logic for arithmentic operations based on the provided choice (add, sub, mul or div).
 while true; do
     printf "${WHITE}  Insert operation${NC} ${GREEN}(add | sub | mul | div): ${NC}"
     read -r operation

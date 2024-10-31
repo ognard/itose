@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# Color Variables
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 WHITE='\033[0;37m'
 NC='\033[0m'
 
+# Adding directory name. Empty name validation.
 echo -e "${WHITE}\n-------------------------------------------------------------------------------\n${NC}"
 printf "${WHITE}  Insert directory name: ${NC}"
 while [[ -z $dir_name ]]; do
@@ -15,9 +17,12 @@ while [[ -z $dir_name ]]; do
     fi
 done
 
+# Making the directory
 mkdir -p $dir_name
 
 printf "${WHITE}  Insert file name: ${NC}"
+
+# Adding file name and checking file existence. Empty name validation.
 while [[ -z $file_name ]]; do
     read -r file_name
     if [[ -z $file_name ]]; then
@@ -38,6 +43,8 @@ while [[ -z $file_name ]]; do
 done
 
 printf "${WHITE}  Insert content: ${NC}"
+
+# Adding file content. Empty content validation.
 while [[ -z $file_content ]]; do
     read -r file_content
     if [[ -z $file_content ]]; then
@@ -45,8 +52,10 @@ while [[ -z $file_content ]]; do
     fi
 done
 
+# Writing the content to the file.
 echo "$file_content" > "$dir_name/$file_name"
 
+# Preview file prompt and logic for previewing the file.
 printf "  ${GREEN}\u2713 Process completed. Preview file?${NC} [Y/n] "
 read -r preview_choice
 
